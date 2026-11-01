@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma surpresa para você ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050005;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* TELA INICIAL */
+
+#inicio {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: #050005;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s;
+}
+
+#inicio h1 {
+    color: #ff8ab5;
+    font-size: 28px;
+    text-shadow: 0 0 20px #ff1680;
+    margin-bottom: 30px;
+}
+
+.botao {
+    background: #ff3d89;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 40px;
+    box-shadow: 0 0 20px #ff1680;
+    animation: pulsar 1.5s infinite;
+}
+
+@keyframes pulsar {
+    50% { transform: scale(1.08); }
+}
+
+/* CONTEÚDO */
+
+#conteudo {
+    display: none;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 15px;
+    position: relative;
+}
+
+/* CORAÇÃO */
+
+#heart {
+    position: relative;
+    width: 320px;
+    height: 300px;
+    margin: 10px auto 30px;
+    animation: batimento 1.3s infinite;
+    filter: drop-shadow(0 0 12px #ff1680);
+}
+
+@keyframes batimento {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+}
+
+.texto-coracao {
+    position: absolute;
+    color: #ff91bd;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 0 0 8px #ff1680, 0 0 15px #ff1680;
+    animation: brilho 1.5s infinite alternate;
+}
+
+@keyframes brilho {
+    from { opacity: .5; }
+    to { opacity: 1; }
+}
+
+/* MENSAGEM */
+
+.mensagem {
+    max-width: 550px;
+    line-height: 1.8;
+    margin: 10px auto 25px;
+    color: #ffc3dc;
+    font-size: 17px;
+}
+
+h2 {
+    color: #ff8ab5;
+    text-shadow: 0 0 15px #ff1680;
+    margin-bottom: 15px;
+}
+
+/* PERGUNTA */
+
+#pergunta {
+    display: none;
+    text-align: center;
+    margin-top: 25px;
+    animation: aparecer 1.5s forwards;
+}
+
+#pergunta h1 {
+    color: #ff80b0;
+    font-size: 29px;
+    text-shadow: 0 0 15px #ff1680;
+    margin-bottom: 25px;
+}
+
+.botoes {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sim {
+    background: #ff3988;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px #ff1680;
+}
+
+.claro {
+    background: #fff;
+    color: #ff3988;
+    padding: 15px 30px;
+    border-radius: 30px;
+}
+
+#resposta {
+    display: none;
+    color: #ff9dc5;
+    font-size: 25px;
+    margin-top: 30px;
+    text-shadow: 0 0 15px #ff1680;
+    line-height: 1.6;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* PARTÍCULAS */
+
+.particula {
+    position: fixed;
+    bottom: -20px;
+    color: #ff5a9e;
+    pointer-events: none;
+    animation: subir linear infinite;
+    z-index: 0;
+}
+
+@keyframes subir {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* CELULAR */
+
+@media(max-width: 400px) {
+    #heart {
+        transform: scale(.85);
+        margin-top: -10px;
+        margin-bottom: 10px;
+    }
+
+    #pergunta h1 {
+        font-size: 24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="inicio">
+    <h1>Tenho uma surpresa para você... 💗</h1>
+    <button class="botao" onclick="abrir()">Clique aqui ❤️</button>
+</div>
+
+<div id="conteudo">
+
+    <h2>Uma coisa especial para você...</h2>
+
+    <div id="heart"></div>
+
+    <div class="mensagem">
+        Você é uma pessoa muito especial.
+        Desde que apareceu, conseguiu tornar
+        meus dias mais felizes.
+
+        Quero te fazer uma pergunta que vem
+        do fundo do meu coração... 💗
+    </div>
+
+    <button class="botao" onclick="mostrarPergunta()">
+        Tenho uma pergunta 💌
+    </button>
+
+    <div id="pergunta">
+        <h1>Quer namorar comigo? ❤️</h1>
+
+        <div class="botoes">
+            <button class="sim" onclick="responder()">
+                SIM ❤️
+            </button>
+
+            <button class="claro" onclick="responder()">
+                CLARO! 💗
+            </button>
+        </div>
+    </div>
+
+    <div id="resposta">
+        EU TE AMO! ❤️🥹
+        <br>
+        Que esse seja o começo de algo lindo! 💗
+    </div>
+
+</div>
+
+<!-- MÚSICA -->
+
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* CRIAR CORAÇÃO */
+
+const heart = document.getElementById("heart");
+
+for (let i = 0; i < 180; i++) {
+
+    const t = Math.PI * 2 * i / 180;
+
+    const x = 16 * Math.pow(Math.sin(t), 3);
+
+    const y =
+        13 * Math.cos(t)
+        - 5 * Math.cos(2*t)
+        - 2 * Math.cos(3*t)
+        - Math.cos(4*t);
+
+    const texto = document.createElement("span");
+
+    texto.className = "texto-coracao";
+    texto.textContent = "I Love You";
+
+    texto.style.left = (160 + x * 8) + "px";
+    texto.style.top = (145 - y * 8) + "px";
+
+    heart.appendChild(texto);
+}
+
+/* PARTÍCULAS */
+
+for (let i = 0; i < 35; i++) {
+
+    const p = document.createElement("div");
+
+    p.className = "particula";
+    p.textContent = Math.random() > .5 ? "❤" : "♥";
+
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.fontSize = (10 + Math.random() * 18) + "px";
+    p.style.animationDuration = (5 + Math.random() * 8) + "s";
+    p.style.animationDelay = Math.random() * 8 + "s";
+
+    document.body.appendChild(p);
+}
+
+/* ABRIR SITE */
+
+function abrir() {
+
+    const musica = document.getElementById("musica");
+
+    musica.play().catch(() => {});
+
+    const inicio = document.getElementById("inicio");
+
+    inicio.style.opacity = "0";
+
+    setTimeout(() => {
+        inicio.style.display = "none";
+        document.getElementById("conteudo").style.display = "flex";
+    }, 1000);
+}
+
+/* MOSTRAR PERGUNTA */
+
+function mostrarPergunta() {
+
+    document.getElementById("pergunta").style.display = "block";
+
+    document.getElementById("pergunta").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+/* RESPOSTA */
+
+function responder() {
+
+    document.getElementById("resposta").style.display = "block";
+
+    document.getElementById("resposta").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement("div");
+        p.className = "particula";
+        p.textContent = "❤️";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.fontSize = "25px";
+        p.style.animationDuration = "4s";
+        document.body.appendChild(p);
+    }
+}
+
+</script>
+
+</body>
+  </html>
